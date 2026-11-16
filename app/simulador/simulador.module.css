@@ -170,6 +170,45 @@
   cursor: pointer;
 }
 
+.muestras {
+  padding: 0.4rem 0.8rem 0.5rem;
+  background: #f6f1ea;
+  border-top: 1px solid var(--borde);
+}
+
+.muestras p {
+  margin: 0 0 0.35rem;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+.muestrasFotos {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.muestrasFotos button {
+  width: 3.6rem;
+  height: 3.6rem;
+  padding: 0;
+  border: 2px solid #0b5d51;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+}
+
+.muestrasFotos button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.muestrasFotos img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .entrada {
   display: flex;
   gap: 0.4rem;

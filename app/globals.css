@@ -79,19 +79,20 @@ img {
   }
 }
 
+/* Marco vertical y foto entera (sin recortar): el cartelito suele estar abajo. */
 .pieza-foto {
   position: relative;
-  aspect-ratio: 1;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
   border-radius: 12px;
   border: 1px solid var(--borde);
-  background: var(--superficie);
+  background: #ece6dc;
 }
 
 .pieza-foto img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .pieza h2 {

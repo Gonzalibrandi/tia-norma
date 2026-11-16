@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import estilos from './simulador.module.css';
 import { achicarFoto } from './achicarFoto';
+import { MUESTRAS } from './muestras';
 
 // Se recuerda la tienda de prueba para que al recargar se sigan viendo los cambios.
 const CLAVE_TIENDA = 'norma-tienda-de-prueba';
@@ -46,7 +47,9 @@ export default function Simulador({ saludo }) {
   const [errorDeCarga, setErrorDeCarga] = useState(false);
   const [mensajes, setMensajes] = useState(() => [conId({ de: 'pagina', texto: saludo })]);
   const [texto, setTexto] = useState('');
-  const [enviando, setEnviando] = useState(false);
+  // Mientras espera la respuesta: null, 'escribiendo' o 'leyendo' (cuando mandó una foto).
+  const [esperando, setEsperando] = useState(null);
+  const enviando = esperando !== null;
   const [version, setVersion] = useState(0);
   const final = useRef(null);
   const selectorDeFoto = useRef(null);
@@ -88,9 +91,9 @@ export default function Simulador({ saludo }) {
     return true;
   }
 
-  async function enviar({ texto: contenido, foto, accion }) {
+  async function enviar({ texto: contenido, foto, muestra, accion }) {
     if (enviando || !tienda) return;
-    setEnviando(true);
+    setEsperando(foto || muestra ? 'leyendo' : 'escribiendo');
 
     try {
       const formulario = new FormData();
@@ -99,6 +102,11 @@ export default function Simulador({ saludo }) {
       if (contenido) {
         formulario.set('texto', contenido);
         agregar({ de: 'norma', texto: contenido });
+      }
+      if (muestra) {
+        const respuesta = await fetch(muestra);
+        if (!respuesta.ok) throw new Error('No se pudo cargar la foto de ejemplo.');
+        foto = await respuesta.blob();
       }
       if (foto) {
         const liviana = await achicarFoto(foto);
@@ -119,7 +127,7 @@ export default function Simulador({ saludo }) {
         texto: `No se pudo enviar. ${error?.message ?? ''} Probá de nuevo.`.replace(/\s+/g, ' '),
       });
     } finally {
-      setEnviando(false);
+      setEsperando(null);
     }
   }
 
@@ -139,7 +147,7 @@ export default function Simulador({ saludo }) {
 
   async function reiniciar() {
     if (enviando || !tienda) return;
-    setEnviando(true);
+    setEsperando('escribiendo');
     try {
       const respuesta = await fetch('/api/reiniciar', {
         method: 'POST',
@@ -154,7 +162,7 @@ export default function Simulador({ saludo }) {
     } catch {
       agregar({ de: 'aviso', texto: 'No se pudo empezar de nuevo. Probá otra vez.' });
     } finally {
-      setEnviando(false);
+      setEsperando(null);
     }
   }
 
@@ -210,7 +218,11 @@ export default function Simulador({ saludo }) {
                 <p>No se pudo preparar la prueba. Recargá la página para intentar de nuevo.</p>
               </li>
             )}
-            {enviando && <li className={estilos.escribiendo}>Escribiendo…</li>}
+            {enviando && (
+              <li className={estilos.escribiendo}>
+                {esperando === 'leyendo' ? 'Mirando el cartelito…' : 'Escribiendo…'}
+              </li>
+            )}
             <li ref={final} aria-hidden="true" />
           </ol>
 
@@ -223,6 +235,23 @@ export default function Simulador({ saludo }) {
               ))}
             </div>
           )}
+
+          <div className={estilos.muestras}>
+            <p>¿No tenés una pieza a mano? Tocá una foto para mandarla:</p>
+            <div className={estilos.muestrasFotos}>
+              {MUESTRAS.map((muestra) => (
+                <button
+                  key={muestra.foto}
+                  type="button"
+                  onClick={() => enviar({ muestra: muestra.foto })}
+                  disabled={ocupado}
+                  aria-label={`Mandar la foto de ejemplo: ${muestra.nombre}`}
+                >
+                  <img src={muestra.foto} alt="" loading="lazy" decoding="async" />
+                </button>
+              ))}
+            </div>
+          </div>
 
           <form className={estilos.entrada} onSubmit={enviarTexto}>
             <input

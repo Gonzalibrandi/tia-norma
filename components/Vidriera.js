@@ -22,7 +22,7 @@ export default function Vidriera({ piezas }) {
                   <img
                     src={pieza.foto}
                     alt={pieza.nombre}
-                    width="800"
+                    width="600"
                     height="800"
                     loading={indice < FOTOS_PRIORITARIAS ? 'eager' : 'lazy'}
                     decoding="async"
