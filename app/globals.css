@@ -1,0 +1,135 @@
+/* Base neutra y muy legible. La identidad visual todavía está por definirse:
+   los colores y la tipografía se cambian desde estas variables. */
+
+:root {
+  --fondo: #faf8f5;
+  --texto: #1c1a17;
+  --texto-suave: #4a4640;
+  --borde: #d9d4cc;
+  --superficie: #ffffff;
+  --sello: #8a2f1c;
+  --fuente: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 125%; /* 20px de base: letra grande para todo el sitio */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--fuente);
+  line-height: 1.4;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* --- Página pública --- */
+
+.pagina {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.2rem 1rem 3rem;
+}
+
+.encabezado h1 {
+  margin: 0 0 1.5rem;
+  font-size: 1.8rem;
+  line-height: 1.15;
+}
+
+.cargando {
+  padding: 1.2rem 1rem;
+  font-size: 1.2rem;
+  color: var(--texto-suave);
+}
+
+.vacio {
+  font-size: 1.2rem;
+  color: var(--texto-suave);
+}
+
+.grilla {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 640px) {
+  .grilla {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .grilla {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.pieza-foto {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--borde);
+  background: var(--superficie);
+}
+
+.pieza-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pieza h2 {
+  margin: 0.7rem 0 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.precio {
+  margin: 0.15rem 0 0;
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.pieza-vendida .pieza-foto img {
+  filter: grayscale(1);
+  opacity: 0.55;
+}
+
+.pieza-vendida .precio {
+  color: var(--texto-suave);
+  text-decoration: line-through;
+}
+
+.sello {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-8deg);
+  padding: 0.3rem 1rem;
+  border: 4px solid var(--sello);
+  border-radius: 8px;
+  background: var(--superficie);
+  color: var(--sello);
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
