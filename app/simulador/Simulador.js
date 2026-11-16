@@ -169,9 +169,9 @@ export default function Simulador({ saludo }) {
       <section className={estilos.explicacion}>
         <h1>El WhatsApp de Norma</h1>
         <p>
-          Esto simula el chat que Norma tiene con su página. Mandá una foto o escribí como si
-          fueras ella y mirá cómo cambia la página. Es tu propia copia de prueba: lo que hagas no
-          le cambia nada a nadie más.
+          Esto simula el WhatsApp de Norma con El Taller, el contacto que mantiene su página al
+          día. Mandá una foto o escribí como si fueras ella y mirá cómo cambia la página. Es tu
+          propia copia de prueba: lo que hagas no le cambia nada a nadie más.
         </p>
         <div className={estilos.acciones}>
           <button type="button" onClick={() => enviar({ accion: 'repaso' })} disabled={ocupado}>
@@ -189,12 +189,12 @@ export default function Simulador({ saludo }) {
       </section>
 
       <div className={estilos.columnas}>
-        <section className={estilos.chat} aria-label="Chat de Norma con su página">
+        <section className={estilos.chat} aria-label="Chat de Norma con El Taller">
           <header className={estilos.contacto}>
             <span className={estilos.avatar} aria-hidden="true">
-              N
+              T
             </span>
-            <span>Mi página</span>
+            <span>El Taller</span>
           </header>
 
           <ol className={estilos.mensajes} aria-live="polite">
