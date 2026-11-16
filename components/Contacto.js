@@ -44,6 +44,7 @@ export default function Contacto({ telefono }) {
     <section className="contacto" aria-label="Cómo pedir una pieza">
       <p className="contacto-texto">¿Te gustó alguna pieza? Mandale un mensaje a Norma:</p>
       <p className="contacto-numero">{telefono}</p>
+      <p className="contacto-ejemplo">Número de ejemplo: Norma no existe.</p>
       <button type="button" className="contacto-boton" onClick={alTocar}>
         Copiar número
       </button>

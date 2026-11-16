@@ -70,6 +70,12 @@ img {
   user-select: all;
 }
 
+.contacto-ejemplo {
+  margin: -0.5rem 0 0.8rem;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
 .contacto-boton {
   min-height: 3rem;
   padding: 0.6rem 1.2rem;
