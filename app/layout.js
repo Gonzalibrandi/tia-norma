@@ -1,7 +1,7 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'Las cerámicas de Norma',
+  title: 'El taller de Norma',
   description: 'Piezas de cerámica hechas a mano por Norma.',
 };
 

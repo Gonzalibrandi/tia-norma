@@ -7,7 +7,7 @@ export default function Vidriera({ piezas }) {
   return (
     <main className="pagina">
       <header className="encabezado">
-        <h1>Las cerámicas de Norma</h1>
+        <h1>El taller de Norma</h1>
       </header>
 
       {piezas.length === 0 ? (

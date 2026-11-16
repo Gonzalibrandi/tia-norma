@@ -1,4 +1,4 @@
-# Las cerámicas de Norma
+# El taller de Norma
 
 Página para que Norma muestre sus piezas de cerámica y la mantenga al día sin aprender nada nuevo: le manda a su página una foto de la pieza con un cartelito escrito a mano, y la página lee el nombre y el precio y le pregunta si la publica. Una vez por semana, la página le pregunta si sigue teniendo cada pieza.
 

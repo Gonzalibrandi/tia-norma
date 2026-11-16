@@ -7,7 +7,7 @@ import { esIdDeTiendaDePrueba } from '@/lib/almacen';
 import { obtenerVidriera } from '@/lib/vidriera';
 
 export const metadata = {
-  title: 'Las cerámicas de Norma (prueba)',
+  title: 'El taller de Norma (prueba)',
   robots: { index: false },
 };
 
