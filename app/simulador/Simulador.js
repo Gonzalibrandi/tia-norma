@@ -273,7 +273,7 @@ export default function Simulador({ saludo }) {
               type="text"
               value={texto}
               onChange={(evento) => setTexto(evento.target.value)}
-              placeholder="Escribí un mensaje"
+              placeholder="Escribí acá"
               aria-label="Mensaje"
               maxLength={300}
               autoComplete="off"

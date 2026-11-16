@@ -58,7 +58,7 @@
 .chat {
   display: flex;
   flex-direction: column;
-  height: min(78vh, 760px);
+  height: min(72vh, 720px);
   min-height: 460px;
   border: 1px solid var(--borde);
   border-radius: 14px;
@@ -262,7 +262,7 @@
   border-radius: 14px;
   overflow: hidden;
   background: var(--superficie);
-  height: min(78vh, 760px);
+  height: min(72vh, 720px);
   min-height: 460px;
 }
 

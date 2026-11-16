@@ -62,9 +62,11 @@ img {
 
 .contacto-numero {
   margin: 0.2rem 0 0.7rem;
-  font-size: 2.1rem;
+  /* Bien grande, pero sin partirse en dos líneas en pantallas angostas. */
+  font-size: clamp(1.5rem, 10vw, 2.1rem);
   font-weight: 800;
   letter-spacing: 0.02em;
+  white-space: nowrap;
   user-select: all;
 }
 
@@ -82,10 +84,13 @@ img {
 }
 
 .contacto-aviso {
-  min-height: 1.4em;
-  margin: 0.5rem 0 0;
+  margin: 0;
   font-size: 1rem;
   font-weight: 600;
+}
+
+.contacto-aviso:not(:empty) {
+  margin-top: 0.5rem;
 }
 
 .cargando {
@@ -120,14 +125,118 @@ img {
   }
 }
 
-/* Marco vertical y foto entera (sin recortar): el cartelito suele estar abajo. */
+.ayuda-grilla {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  color: var(--texto-suave);
+}
+
+/* Marco vertical y foto entera (sin recortar): el cartelito suele estar abajo.
+   Es un botón: al tocarlo, la foto se ve en grande. */
 .pieza-foto {
   position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
   aspect-ratio: 3 / 4;
   overflow: hidden;
   border-radius: 12px;
   border: 1px solid var(--borde);
   background: #ece6dc;
+  cursor: zoom-in;
+}
+
+.pieza-foto:focus-visible,
+.boton-escuchar:focus-visible,
+.boton-cerrar:focus-visible,
+.contacto-boton:focus-visible {
+  outline: 3px solid var(--sello);
+  outline-offset: 3px;
+}
+
+.boton-escuchar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.8rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--texto);
+  border-radius: 10px;
+  background: var(--superficie);
+  color: var(--texto);
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* --- Foto en grande --- */
+
+.vista-grande {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgb(20 18 15 / 0.88);
+}
+
+.vista-grande-contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  max-height: 100%;
+  padding: 1rem;
+  border-radius: 14px;
+  background: var(--fondo);
+  overflow-y: auto;
+}
+
+.vista-grande-contenido img {
+  width: auto;
+  max-width: 100%;
+  max-height: 62vh;
+  border-radius: 10px;
+}
+
+.vista-grande-nombre {
+  margin: 0.8rem 0 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.vista-grande-precio {
+  margin: 0.1rem 0 0.4rem;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.vista-grande-botones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.boton-cerrar {
+  min-height: 2.8rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1.4rem;
+  border: 0;
+  border-radius: 10px;
+  background: var(--texto);
+  color: var(--superficie);
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .pieza-foto img {
