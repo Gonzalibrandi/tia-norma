@@ -47,6 +47,47 @@ img {
   line-height: 1.15;
 }
 
+.contacto {
+  margin: -0.5rem 0 1.8rem;
+  padding: 1rem 1.1rem;
+  border: 2px solid var(--texto);
+  border-radius: 12px;
+  background: var(--superficie);
+}
+
+.contacto-texto {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.contacto-numero {
+  margin: 0.2rem 0 0.7rem;
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  user-select: all;
+}
+
+.contacto-boton {
+  min-height: 3rem;
+  padding: 0.6rem 1.2rem;
+  border: 0;
+  border-radius: 10px;
+  background: var(--texto);
+  color: var(--superficie);
+  font: inherit;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.contacto-aviso {
+  min-height: 1.4em;
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
 .cargando {
   padding: 1.2rem 1rem;
   font-size: 1.2rem;

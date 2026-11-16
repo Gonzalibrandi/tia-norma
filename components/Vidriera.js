@@ -1,3 +1,5 @@
+import Contacto from '@/components/Contacto';
+import { TELEFONO_NORMA } from '@/lib/norma';
 import { formatearPrecio } from '@/lib/texto';
 
 // Las primeras fotos se cargan enseguida; el resto, a medida que se baja.
@@ -8,6 +10,7 @@ export default function Vidriera({ piezas }) {
     <main className="pagina">
       <header className="encabezado">
         <h1>El taller de Norma</h1>
+        <Contacto telefono={TELEFONO_NORMA} />
       </header>
 
       {piezas.length === 0 ? (
