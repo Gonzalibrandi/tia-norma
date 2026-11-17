@@ -178,8 +178,12 @@ export default function Simulador({ saludo }) {
         <h1>El WhatsApp de Norma</h1>
         <p>
           Esto simula el WhatsApp de Norma con El Taller, el contacto que mantiene su página al
-          día. Mandá una foto o escribí como si fueras ella y mirá cómo cambia la página. Es tu
-          propia copia de prueba: lo que hagas no le cambia nada a nadie más.
+          día. Mandá una foto o escribí como si fueras ella y mirá cómo cambia la página.
+        </p>
+        <p>
+          Lo que publiques aparece en <strong>tu copia de prueba</strong> de la página (al lado
+          del chat, o abajo en el celular), no en la página principal de Norma. Así nadie le
+          pisa la prueba a nadie.
         </p>
         <div className={estilos.acciones}>
           <button type="button" onClick={() => enviar({ accion: 'repaso' })} disabled={ocupado}>

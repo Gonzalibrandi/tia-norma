@@ -5,4 +5,5 @@ export const MUESTRAS = [
   { foto: '/fotos/muestras/florero-dona.jpg', nombre: 'Florero Dona' },
   { foto: '/fotos/muestras/matecito.jpg', nombre: 'Matecito' },
   { foto: '/fotos/muestras/apoya-cuchara.jpg', nombre: 'Apoya cuchara' },
+  { foto: '/fotos/muestras/maceta-chica.jpg', nombre: 'Maceta chica' },
 ];

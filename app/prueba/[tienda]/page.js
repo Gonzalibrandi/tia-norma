@@ -26,5 +26,5 @@ async function Contenido({ params }) {
   const piezas = await obtenerVidriera(tienda);
   if (!piezas) notFound();
 
-  return <Vidriera piezas={piezas} />;
+  return <Vidriera piezas={piezas} esPrueba />;
 }

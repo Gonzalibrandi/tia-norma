@@ -47,6 +47,21 @@ img {
   line-height: 1.15;
 }
 
+.aviso-prueba {
+  margin: 0 0 1.2rem;
+  padding: 0.7rem 0.9rem;
+  border-left: 5px solid var(--sello);
+  border-radius: 6px;
+  background: #f3e3d9;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.aviso-prueba a {
+  color: var(--sello);
+  font-weight: 700;
+}
+
 .contacto {
   margin: -0.5rem 0 1.8rem;
   padding: 1rem 1.1rem;
