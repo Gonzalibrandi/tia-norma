@@ -51,7 +51,7 @@ export default function Simulador({ saludo }) {
   const [esperando, setEsperando] = useState(null);
   const enviando = esperando !== null;
   const [version, setVersion] = useState(0);
-  const final = useRef(null);
+  const lista = useRef(null);
   const selectorDeFoto = useRef(null);
 
   const usarTienda = useCallback((id) => {
@@ -68,9 +68,17 @@ export default function Simulador({ saludo }) {
     pedirTienda(leerTiendaGuardada()).then(usarTienda, () => setErrorDeCarga(true));
   }, [usarTienda]);
 
+  // Baja el chat hasta el último mensaje. Mueve solo el chat (no toda la página)
+  // y se vuelve a llamar cuando termina de cargar una foto, porque la foto agranda
+  // el mensaje y dejaría el nombre y el precio fuera de la vista.
+  const bajarAlFinal = useCallback(() => {
+    const elemento = lista.current;
+    if (elemento) elemento.scrollTop = elemento.scrollHeight;
+  }, []);
+
   useEffect(() => {
-    final.current?.scrollIntoView({ block: 'end' });
-  }, [mensajes, enviando]);
+    bajarAlFinal();
+  }, [mensajes, esperando, bajarAlFinal]);
 
   function agregar(...nuevos) {
     setMensajes((anteriores) => [...anteriores, ...nuevos.map(conId)]);
@@ -209,10 +217,12 @@ export default function Simulador({ saludo }) {
             <span>El Taller</span>
           </header>
 
-          <ol className={estilos.mensajes} aria-live="polite">
+          <ol className={estilos.mensajes} aria-live="polite" ref={lista}>
             {mensajes.map((mensaje) => (
               <li key={mensaje.id} className={estilos[mensaje.de]}>
-                {mensaje.foto && <img src={mensaje.foto} alt="Foto de la pieza" />}
+                {mensaje.foto && (
+                  <img src={mensaje.foto} alt="Foto de la pieza" onLoad={bajarAlFinal} />
+                )}
                 {mensaje.texto && <p>{mensaje.texto}</p>}
               </li>
             ))}
@@ -227,7 +237,6 @@ export default function Simulador({ saludo }) {
                 {esperando === 'leyendo' ? 'Mirando el cartelito…' : 'Escribiendo…'}
               </li>
             )}
-            <li ref={final} aria-hidden="true" />
           </ol>
 
           {botones && (

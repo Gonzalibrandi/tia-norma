@@ -51,14 +51,20 @@
   .columnas {
     grid-template-columns: minmax(340px, 420px) 1fr;
   }
+
+  .chat {
+    height: min(72vh, 720px);
+  }
 }
 
 /* --- Chat --- */
 
+/* En el celular, el chat ocupa casi toda la pantalla, como en WhatsApp;
+   en la compu comparte el alto con la vista de la página. */
 .chat {
   display: flex;
   flex-direction: column;
-  height: min(72vh, 720px);
+  height: min(92vh, 860px);
   min-height: 460px;
   border: 1px solid var(--borde);
   border-radius: 14px;
@@ -106,20 +112,18 @@
   box-shadow: 0 1px 1px rgb(0 0 0 / 0.12);
 }
 
-.mensajes li:last-child {
-  padding: 0;
-  box-shadow: none;
-}
-
 .mensajes p {
   margin: 0;
   white-space: pre-line;
   overflow-wrap: anywhere;
 }
 
+/* Foto entera pero no tan alta: así el mensaje (foto, nombre y precio) entra
+   mejor en la pantalla de un celular. */
 .mensajes img {
-  width: 100%;
-  max-width: 260px;
+  width: auto;
+  max-width: min(100%, 260px);
+  max-height: 34vh;
   border-radius: 8px;
 }
 
