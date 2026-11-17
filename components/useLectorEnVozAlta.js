@@ -6,13 +6,23 @@
 
 import { useCallback, useEffect, useState } from 'react';
 
+// La voz depende de lo que tenga instalado cada celular. Se prefiere un acento
+// rioplatense o latinoamericano; la de España queda como último recurso.
+const ACENTOS_PREFERIDOS = ['es-ar', 'es-uy', 'es-419', 'es-us', 'es-mx', 'es-cl', 'es-co'];
+
+function prioridad(voz) {
+  const idioma = voz.lang?.toLowerCase().replace('_', '-') ?? '';
+  if (!idioma.startsWith('es')) return Infinity;
+  const posicion = ACENTOS_PREFERIDOS.findIndex((a) => idioma.startsWith(a));
+  if (posicion !== -1) return posicion;
+  if (idioma.startsWith('es-es')) return ACENTOS_PREFERIDOS.length + 1;
+  return ACENTOS_PREFERIDOS.length; // Otro país de habla hispana.
+}
+
 function vozEnEspanol() {
-  const voces = window.speechSynthesis.getVoices();
-  return (
-    voces.find((v) => v.lang?.toLowerCase().startsWith('es-ar')) ??
-    voces.find((v) => v.lang?.toLowerCase().startsWith('es')) ??
-    null
-  );
+  const voces = window.speechSynthesis.getVoices().filter((v) => prioridad(v) !== Infinity);
+  if (!voces.length) return null;
+  return voces.reduce((mejor, voz) => (prioridad(voz) < prioridad(mejor) ? voz : mejor));
 }
 
 function puedeHablarEnEspanol() {
@@ -47,8 +57,8 @@ export function useLectorEnVozAlta() {
     const sintesis = window.speechSynthesis;
     sintesis.cancel(); // Si estaba leyendo otra pieza, se corta.
     const frase = new SpeechSynthesisUtterance(texto);
-    frase.lang = 'es-AR';
     const voz = vozEnEspanol();
+    frase.lang = voz?.lang ?? 'es-AR';
     if (voz) frase.voice = voz;
     frase.rate = 0.9; // Un poco más lento de lo normal.
     sintesis.speak(frase);
